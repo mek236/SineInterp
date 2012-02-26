@@ -1,0 +1,17 @@
+This is the template file you can use to write your own interpolation 
+algorithms with for the group project. 
+
+There are four files included: sineTest.h, sineTest.cpp, Makefile, LinearSine.h.
+
+Under Linux (and Macs), you go into the directory with the four files, and type
+    make
+which should compile a program "sineTest". Then if you type
+    ./sineTest
+it should run the program and give you the time taken. (Depending on how
+your paths are set, you may not need the initial ./). 
+
+Linearsine.h is an example of what you should write. You need to change 
+a couple of lines in sineTest.cpp and Makefile for your own file to work,
+but most of the work should be done in a separate file (e.g. PolynomialSine.h).
+The lines that needs to be added in sineTest.cpp and Makefile are indicated 
+by comments.
