@@ -1,5 +1,4 @@
 #include "sineTest.h"
-// Add your header file here
 #include "LinearSine.h"
 #include "ChebSine.h"
 
