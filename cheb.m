@@ -2,7 +2,7 @@ clear all
 close all
 
 
-N=11;   % Interpolation order
+N=11;   % Interpolation order-1
 A=0.0;  % Interval start
 B=2*pi; % Interval end
 c=chebcoeff(N,A,B);
