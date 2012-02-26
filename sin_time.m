@@ -1,3 +1,6 @@
+clear all
+close all
+% Time sin
 x=linspace(0,2*pi,1e6);
 N=100;
 sinTotal=0;
