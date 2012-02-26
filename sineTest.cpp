@@ -18,20 +18,22 @@ static double randarr[NTIME];
 
 int main()
 {
-    clock_t st, ed;
+	clock_t st, ed;
 
-    // generate an array of random numbers to test the time
-    for(int i=0; i<NTIME; i++) {
-        randarr[i] = rand()*2.*M_PI/RAND_MAX;
-    }
+	// generate an array of random numbers to test the time
+	for(int i=0; i<NTIME; i++) {
+		randarr[i] = rand()*2.*M_PI/RAND_MAX;
+	}
 
-    // Instantiate machineSine, linearSine
-    // Add your sine class and call EvaluateYourSine with your class instance.
-    SinePrototype machineSine;
-    LinearSine linear(10);
+	// Instantiate machineSine, linearSine
+	// Add your sine class and call EvaluateYourSine with your class instance.
+	SinePrototype machineSine;
+	LinearSine linear(10);
+	ChebSine chebsin(10);
     
-    EvaluateYourSine(&machineSine, "our machine sine");
-    EvaluateYourSine(&linear, "linear sine");
+	EvaluateYourSine(&machineSine, "our machine sine");
+	EvaluateYourSine(&linear, "linear sine");
+	EvaluateYourSine(&chebsin, "Chebyshev sine");
 }
 
 void EvaluateYourSine(SinePrototype *yoursine, const char *name) {

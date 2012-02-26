@@ -3,7 +3,6 @@
 #include <cmath>
 #include <vector>
 #include "sineTest.h"
-
 // In c++, structs are much like classes, except they default to public
 // class LinearSine : public SinePrototype would also work here
 struct LinearSine : SinePrototype
@@ -24,6 +23,7 @@ struct LinearSine : SinePrototype
         Npoints = nn + 1;
         xx.resize(Npoints);
         sineX.resize(Npoints);
+
         for(int i = 0; i < Npoints; i++) {
             xx[i] = i*2.*M_PI/Nintervals;
             sineX[i] = sin(xx[i]); 
