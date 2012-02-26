@@ -9,7 +9,7 @@
 
 #define ORDER 10
 // In c++, structs are much like classes, except they default to public
-// class LinearSine : public SinePrototype would also work here
+// class LinearSine : public SinePrototype would also work here   
 struct ChebSine : SinePrototype
 {
 	private:
