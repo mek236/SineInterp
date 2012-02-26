@@ -1,5 +1,5 @@
 # Makefile for interpolation template
-#
+#  
 # Add your headerfile to the sineTest: line.
 
 sineTest: sineTest.h sineTest.cpp ChebSine.h LinearSine.h
