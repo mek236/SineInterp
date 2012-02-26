@@ -13,7 +13,7 @@ class SinePrototype
 		{
         // When you overload this constructor, use it to initialize constants
         // and array storage 
-        }
+		}
 
     // Overload the function with your function
 	virtual double sine(double x) {
