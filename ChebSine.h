@@ -39,9 +39,12 @@ struct ChebSine : SinePrototype
 			//cout << co[n-1]<<"\n";
 		}
 		inFile.close();
-
+		double A = 0;
+		double B = 2*M_PI;
+		
 		for(int i = 0; i < Npoints; i++) {
-			xx[i] = i*2.*M_PI/Nintervals;
+			//xx[i] = i*2.*M_PI/Nintervals;
+			xx[i] = cos(M_PI*(i-.5)/Npoints)*((B-A)/2)+(B+A)/2;
 			sineX[i] = sin(xx[i]); 
 		}
 	}
