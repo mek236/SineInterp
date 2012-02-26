@@ -1,6 +1,6 @@
 function [ c ] = chebcoeff( N,A,B )
 %CHEBCOEFF Generates coefficients of the Nth degree Chebyshev polynomial
-% Between A and B
+% Between A and B 
 
     k=1:N;
     Y=cos(pi*(k-.5)/N);
