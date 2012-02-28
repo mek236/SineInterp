@@ -24,21 +24,22 @@ int main()
 		randarr[i] = rand()*2.*M_PI/RAND_MAX;
 	}
 
+	int interpOrder=15;
 	// Instantiate machineSine, linearSine
 	// Add your sine class and call EvaluateYourSine with your class instance.
 	SinePrototype machineSine;
-	LinearSine linear(10);
-	ChebSine chebsin(10);
+	LinearSine linear(interpOrder);
+	ChebSine chebsin(interpOrder);
     
 	EvaluateYourSine(&machineSine, "our machine sine");
-	EvaluateYourSine(&linear, "linear sine");
 	EvaluateYourSine(&chebsin, "Chebyshev sine");
+	EvaluateYourSine(&linear, "linear sine");
 }
 
 void EvaluateYourSine(SinePrototype *yoursine, const char *name) {
     clock_t st, ed;
     double tmp;
-
+	cout << "BEGIN EVAL\n";
     st = clock();
     for(int i=0; i<NTIME; i++) {
     // We add up the results to keep the optimizing compiler from removing the line
