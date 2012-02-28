@@ -2,10 +2,10 @@
 #  
 # Add your headerfile to the sineTest: line.
 
-sineTest: sineTest.h sineTest.cpp ChebSine.h LinearSine.h
-	g++ -o sineTest sineTest.cpp
+sineTest: sineTest.h sineTest.cpp ChebSine.h LinearSine.h 
+	g++ -o sineTest sineTest.cpp -O3
 
 all: sineTest
 
-clear:
+clean:
 	rm -f sineTest
