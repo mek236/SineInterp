@@ -57,6 +57,7 @@ struct ChebSine : SinePrototype
 		double xi=(x-M_PI)/(M_PI);		//Adjust x to [-1,1]
 		double yi=0.0;						//sin(x) estimate
 		double d1=0.0,d2=0.0,sv=0.0;
+
 		// Use Clenshaw recursion to find f(x)=sum_n=0^N-1 (c_n*T_n)
 		for(int j=Nintervals-1;j>0;j--){
 			sv=d1;
