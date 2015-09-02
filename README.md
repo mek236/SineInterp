@@ -1,5 +1,5 @@
-
-Under Linux (and Macs), you go into the directory with the four files, and type
+#README#
+Under Linux (and Mac OS), you go into the directory with the four files, and type
     make
 which should compile a program "sineTest". Then if you type
     ./sineTest
