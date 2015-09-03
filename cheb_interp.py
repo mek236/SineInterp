@@ -1,29 +1,45 @@
+#!/usr/bin/python
 import numpy as np
 from matplotlib import pyplot as plt
 from time import time
 
 def cheb_coeff(N,A,B):
 	# CHEBCOEFF Generates coefficients of the Nth degree Chebyshev polynomial
-	# Between A and B 
-	k	= np.arange(N)*1.0
-	Y	= np.cos(np.pi*(k-0.5)/N)
-	F	= np.sin(Y*((B-A)/2.0)+(B+A)/2.0)
-	c	= np.zeros(N)
-	for j in range(N):
-		csum=0.0
-		for i in range(N):
-			csum=csum+F[i]*np.cos((np.pi*(j-1))*((i-0.5)/N))
-		c[j]=csum*(2.0/N)
-	return c
+	# Between A and B
+
+	x			= np.cos((2.0*np.arange(1,N+1)-1)*np.pi/2.0/N)
+	y			= np.sin(x*((B-A)/2)+(B+A)/2)
+	T0			= np.zeros(N)
+	T1			= np.ones(N)
+	c			= np.append(np.sum(y)/N,np.zeros(N-1))
+	a = 1
+	for k in range(1,N):
+		TL			= T1
+		T1			= a*x*T1-T0
+		T0			= TL
+		c[k]		= np.sum(T1*y)*2.0/N
+		a			= 2
+	return c,x
+
+def cheb_poly_eval(c,x):
+	n	= c.shape[0]
+	u	= c[n-1]*np.ones(x.shape)
+	if n > 1:
+		u_jp1	= u
+		u		= c[n-2]+2.0*x*c[n-1]
+		for j in range(n-3,-1,-1):
+			u_jp2	= u_jp1
+			u_jp1	= u
+			u		= c[j]+2.0*x*u_jp1-u_jp2
+		return u-x*u_jp1
 
 def main():
-	N	= 10			# Interpolation order-1
-	A	= 0			# Interval start
+	N	= 6			# Interpolation order-1
+	A	= -np.pi		# Interval start
 	B	= np.pi		# Interval end
-	c	= cheb_coeff(N,A,B)
-
+	c,x	= cheb_coeff(N,A,B)
 	Ntests	= 10
-	Npts		= 10
+	Npts		= 1000
 	xA			= np.linspace(A,B,Npts)
 	timeTotal= 0
 
@@ -31,15 +47,8 @@ def main():
 	x	= (2*xA-A-B)/(B-A)
 
 	for i in range(Ntests):
-		DM1=0.0
-		DM2=0.0
-		SV	=0.0
 		t_s	= time()
-		for j in range(N-1,0,-1):
-			SV		= DM1
-			DM1	= 2.0*x*DM1-DM2+c[j]
-			DM2	= SV
-		est	= x*DM1-DM2+0.5*c[0]
+		est	= cheb_poly_eval(c,x)
 		ti	= (time()-t_s)
 		timeTotal=timeTotal+ti
 	cTime=timeTotal/Ntests
