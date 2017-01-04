@@ -20,7 +20,10 @@ def cheb_coeff(deg, intv_start, intv_end):
 
     Returns
     -------
-
+    coeff : array_like
+        Array of Chebyshev coefficents (shape == `deg`)
+    y_c : array_like
+        Transformed interpolation points
     """
     k_deg = np.arange(1, deg + 1)
     y_c = np.cos((np.pi * k_deg - 0.5) / deg)
