@@ -22,21 +22,16 @@ def cheb_coeff(deg, intv_start, intv_end):
     -------
 
     """
-    x_c = np.cos((2.0 * np.arange(0, deg)) * np.pi / 2.0 / deg)
-    y_c = (np.sin(x_c * ((intv_end - intv_start) / 2) + (intv_end + intv_start) / 2) +
-           np.cos(x_c * ((intv_end - intv_start) / 2) + (intv_end + intv_start) / 2))
-
-    t_0 = np.zeros(deg)
-    t_1 = np.ones(deg)
-    coeff = np.append(np.sum(y_c) / deg, np.zeros(deg - 1))
-    a_fac = 1
-    for k in range(1, deg):
-        t_last = t_1
-        t_1 = a_fac * x_c * t_1 - t_0
-        t_0 = t_last
-        coeff[k] = np.sum(t_1 * y_c) * 2.0 / deg
-        a_fac = 2
-    return coeff, x_c * ((intv_end - intv_start) / 2) + (intv_end + intv_start) / 2
+    k_deg = np.arange(1, deg + 1)
+    y_c = np.cos((np.pi * k_deg - 0.5) / deg)
+    f_c = np.sin(y_c * (intv_end - intv_start) / 2.0 + (intv_end + intv_start) / 2.0)
+    coeff = np.zeros(deg)
+    for j in range(deg):
+        coef_sum = 0.0
+        for i in range(deg):
+            coef_sum += f_c[i] * np.cos((np.pi * j) * (i + 0.5) / deg)
+        coeff[j] = coef_sum * (2.0 / deg)
+    return coeff, y_c * ((intv_end - intv_start) / 2) + (intv_end + intv_start) / 2
 
 
 def cheb_poly_eval(coeff, x_all):
